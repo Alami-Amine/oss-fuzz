@@ -1,4 +1,4 @@
-# Copyright 2023 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,8 @@
 ################################################################################
 
 FROM gcr.io/oss-fuzz-base/base-builder
-RUN apt-get update && apt-get install -y make cmake
-RUN git clone --depth 1 https://github.com/simdutf/simdutf simdutf
-WORKDIR simdutf
+RUN apt-get update && apt-get install -y make autoconf automake xxd
+RUN git clone https://github.com/ggerganov/llama.cpp
+WORKDIR llama.cpp
 COPY build.sh $SRC/
+COPY fuzzers fuzzers
